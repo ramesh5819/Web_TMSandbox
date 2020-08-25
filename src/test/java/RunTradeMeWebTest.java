@@ -1,6 +1,6 @@
 
 
-import SkyUtils.SkyUtils;
+import TradeMeUtils.TradeMeUtils;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -18,16 +18,16 @@ import java.util.Date;
 
         features = "classpath:features",
 
-        glue = "SkyStepDefinitions",
+        glue = "TradeMeStepDefs",
         monochrome = false,
 
         plugin = { "html:target/cucumber-html-report",
                 "json:target/cucumber.json", "pretty:target/cucumber-pretty.txt",
                 "usage:target/cucumber-usage.json", "junit:target/cucumber-results.xml" }
-        ,tags = {"@Web-211"}
+        ,tags = {"@usedcars"}
 
 )
-public class RunSkyWebTest {
+public class RunTradeMeWebTest {
 
     @BeforeClass
     public static void initiateTestRun() {
