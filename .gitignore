@@ -1,0 +1,32 @@
+*.class
+
+target/*
+.idea/*
+.metadata/*
+.settings/*
+target
+.idea
+.idea/*.xml
+.metadata
+.settings
+Test*.*ml
+/allure-results/
+
+target
+.idea
+.metadata
+.settings
+Test*.*ml
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+.classpath
+.project
+*.iml
+*_IS_UNDEFINED
+.checkstyle
