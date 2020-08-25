@@ -4,6 +4,7 @@ package TradeMePages;
 import TradeMeUtils.Log;
 import TradeMeUtils.TradeMeUtils;
 import TradeMeUtils.UserProfile;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,8 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -49,7 +52,7 @@ public class TradeMeBase {
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
         }
-        InitializePages();
+        initializePages();
         return driver;
     }
 
@@ -127,62 +130,48 @@ public class TradeMeBase {
                 options.setUseTechnologyPreview(true);
                 this.driver = new SafariDriver(options);
                 break;
-            case "saucechrome":
-                DesiredCapabilities caps = DesiredCapabilities.chrome();
-                caps.setCapability("platform", "Windows 10");
-//                caps.setCapability("version", "46.0");
-                caps.setCapability("version", "latest");
-                caps.setCapability("name", "IOP Daily Regression Suite");
-                caps.setCapability("extendedDebugging", "true");
-                caps.setCapability("screenResolution", "1600x1200");
-                caps.setCapability("build", "1.01");
-                this.driver = new RemoteWebDriver(new URL(URL), caps);
-                this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                break;
-            case "remotechrome":
-                cap = DesiredCapabilities.chrome();
-                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap);
-                driver.manage().window().maximize();
-                break;
-            case "sauceedge":
-                DesiredCapabilities caps1 = DesiredCapabilities.edge();
-                caps1.setCapability("platform", "Windows 10");
-//                caps.setCapability("version", "46.0");
-                caps1.setCapability("version", "latest");
-                caps1.setCapability("name", "IOP Daily Regression Suite");
-                caps1.setCapability("extendedDebugging", "true");
-                caps1.setCapability("screenResolution", "1600x1200");
-                caps1.setCapability("build", "1.01");
-                this.driver = new RemoteWebDriver(new URL(URL), caps1);
-                this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                break;
-            case "saucefirefox":
-                DesiredCapabilities caps2 = DesiredCapabilities.firefox();
-                caps2.setCapability("platform", "Windows 10");
-//                caps.setCapability("version", "46.0");
-                caps2.setCapability("version", "latest");
-                caps2.setCapability("name", "IOP Daily Regression Suite");
-                caps2.setCapability("extendedDebugging", "true");
-                caps2.setCapability("screenResolution", "1600x1200");
-                caps2.setCapability("build", "1.01");
-                this.driver = new RemoteWebDriver(new URL(URL), caps2);
-                this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                break;
-            case "saucemac":
-                DesiredCapabilities caps3 = DesiredCapabilities.safari();
-                caps3.setCapability("platform", "macOS 10.13");
-                caps3.setCapability("version", "11.1");
-                caps3.setCapability("name", "IOP Daily Regression Suite");
-                caps3.setCapability("extendedDebugging", "true");
-                caps3.setCapability("screenResolution", "1600x1200");
-                caps3.setCapability("build", "1.01");
-                this.driver = new RemoteWebDriver(new URL(URL), caps3);
-                this.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-                break;
             default:
                 fail("Unknown browser");
         }
         return this.driver;
+    }
+
+    public void setUserProfile(String profile) {
+
+        String file;
+        if (getPageURL().contains("prelive")) {
+            file = System.getProperty("user.dir") + "/src/main/resources/userProfiles/" + profile.replace(" ", "") + "Prelive.json";
+        } else {
+            file = System.getProperty("user.dir") + "/src/main/resources/userProfiles/" + profile.replace(" ", "") + ".json";
+        }
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            userProfile = mapper.readValue(new File(file), UserProfile.class);
+        } catch (IOException e) {
+            fail("User profile doesnt exist");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void getPage(String _url) {
+        Log.info("Getting URL: " + _url);
+        driver.get(_url);
+    }
+
+    public String getPageTitle() {
+        return driver.getTitle();
+    }
+
+    public String getPageURL() {
+        return driver.getCurrentUrl();
+    }
+
+    public void getScreenShot() {
+        try {
+            TradeMeUtils.fnScreenshot(getDriver());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

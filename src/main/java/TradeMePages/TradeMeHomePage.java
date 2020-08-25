@@ -10,4 +10,7 @@ public class TradeMeHomePage extends TradeMeBase{
     }
 
 
+    public static void clickSignout() {
+        //Write code to click Sign out
+    }
 }
