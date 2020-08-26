@@ -30,6 +30,7 @@ import static org.junit.Assert.fail;
 public class TradeMeBase {
     static protected UserProfile userProfile;
     static protected TradeMeHomePage tradeMeHomePage;
+    static protected TradeMeMotorsPage tradeMeMotorsPage;
 
     private static WebDriver driver;
 
@@ -43,6 +44,7 @@ public class TradeMeBase {
 
     public void initializePages(){
         tradeMeHomePage = PageFactory.initElements(driver, TradeMeHomePage.class);
+        tradeMeMotorsPage = PageFactory.initElements(driver, TradeMeMotorsPage.class);
     }
 
     public WebDriver Setup() {

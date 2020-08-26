@@ -58,13 +58,6 @@ public class TradeMeUtils extends TradeMeBase {
         waitForAnimation(element);
         waitForElementBeClickable(element);
         element.click();
-        if (System.getProperty("browser") == "ie") {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public static void waitForAnimation(WebElement element) {

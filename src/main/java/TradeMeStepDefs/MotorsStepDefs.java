@@ -8,11 +8,6 @@ import cucumber.api.java.en.When;
 
 public class MotorsStepDefs extends TradeMeBase {
 
-    @Given("^I select \"([^\"]*)\" category$")
-    public void i_select_category(String arg1) throws Throwable {
-
-    }
-
     @When("^I choose \"([^\"]*)\" under Motors$")
     public void i_choose_under_Motors(String arg1) throws Throwable {
 
