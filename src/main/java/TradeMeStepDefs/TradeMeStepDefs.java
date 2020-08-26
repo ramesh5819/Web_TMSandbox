@@ -60,7 +60,7 @@ public class TradeMeStepDefs extends TradeMeBase {
 
 
         Log.info("Driver shutting down.");
-//        getDriver().close();
-//        getDriver().quit();
+        getDriver().close();
+        getDriver().quit();
     }
 }
