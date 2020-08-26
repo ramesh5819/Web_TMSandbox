@@ -1,4 +1,4 @@
-url= ${base.url}
+url= https://www.tmsandbox.co.nz/
 default.browser=chrome
 profile=${default.profile}
 fname=ramesh

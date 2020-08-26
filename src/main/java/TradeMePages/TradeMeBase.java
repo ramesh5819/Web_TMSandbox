@@ -6,6 +6,7 @@ import TradeMeUtils.TradeMeUtils;
 import TradeMeUtils.UserProfile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -171,6 +172,21 @@ public class TradeMeBase {
             TradeMeUtils.fnScreenshot(getDriver());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void waitForPageToBeReady() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        //This loop can run for 120 times to check If page Is ready after every 0.5 second.
+        for (int i = 0; i < 30; i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+            //To check page ready state.
+            if (js.executeScript("return document.readyState").toString().equals("complete")) {
+                break;
+            }
         }
     }
 
