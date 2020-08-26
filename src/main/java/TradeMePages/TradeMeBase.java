@@ -31,6 +31,7 @@ public class TradeMeBase {
     static protected UserProfile userProfile;
     static protected TradeMeHomePage tradeMeHomePage;
     static protected TradeMeMotorsPage tradeMeMotorsPage;
+    static protected TradeMeUsedCarListingPage tradeMeUsedCarListingPage;
 
     private static WebDriver driver;
 
@@ -45,6 +46,7 @@ public class TradeMeBase {
     public void initializePages(){
         tradeMeHomePage = PageFactory.initElements(driver, TradeMeHomePage.class);
         tradeMeMotorsPage = PageFactory.initElements(driver, TradeMeMotorsPage.class);
+        tradeMeUsedCarListingPage = PageFactory.initElements(driver, TradeMeUsedCarListingPage.class);
     }
 
     public WebDriver Setup() {

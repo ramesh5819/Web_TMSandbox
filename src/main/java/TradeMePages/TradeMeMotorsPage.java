@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.assertTrue;
 
@@ -51,5 +52,14 @@ public class TradeMeMotorsPage extends TradeMeBase {
                 break;
             }
         }
+    }
+
+    public void clickUsedCar() {
+        Random random = new Random();
+        //The below piece of code enables the scenario to click a different used car every
+//        WebElement currentUsedCar = listOfUsedCars.get(random.nextInt(listOfUsedCars.size()-1));
+        WebElement currentUsedCar = listOfUsedCars.get(8);
+        TradeMeUtils.waitHighlightandClick(currentUsedCar);
+        waitForPageToBeReady();
     }
 }

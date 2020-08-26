@@ -24,4 +24,9 @@ public class MotorsStepDefs extends TradeMeBase {
         tradeMeMotorsPage.validateExistanceOf(make);
     }
 
+    @When("^I choose a used car$")
+    public void i_choose_a_used_car() throws Throwable {
+        tradeMeMotorsPage.clickUsedCar();
+    }
+
 }
