@@ -145,7 +145,10 @@ public class TradeMeBase {
         String file;
         if (getPageURL().contains("prelive")) {
             file = System.getProperty("user.dir") + "/src/main/resources/userProfiles/" + profile.replace(" ", "") + "Prelive.json";
-        } else {
+        } else if (getPageURL().contains("sandbox")){
+            file = System.getProperty("user.dir") + "/src/main/resources/userProfiles/" + profile.replace(" ", "") + "Sandbox.json";
+        }
+        else {
             file = System.getProperty("user.dir") + "/src/main/resources/userProfiles/" + profile.replace(" ", "") + ".json";
         }
         ObjectMapper mapper = new ObjectMapper();
