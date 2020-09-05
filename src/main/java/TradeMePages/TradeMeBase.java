@@ -64,14 +64,13 @@ public class TradeMeBase {
     private void setSystemProperties() {
         String path = System.getProperty("user.dir") + "/drivers/";
         if (System.getProperty("os.name").contains("Windows 10")) {
-            System.setProperty("webdriver.edge.driver", path + "win/MicrosoftWebDriver.exe");
+            System.setProperty("webdriver.edge.driver", path + "win/msedgedriver.exe");
         }
         if (System.getProperty("os.name").contains("Win")) {
             System.setProperty("webdriver.chrome.driver", path + "win/chromedriver.exe");
             System.setProperty("webdriver.ie.driver", path + "win/IEDriverServer.exe");
             System.setProperty("webdriver.gecko.driver", path + "win/geckodriver.exe");
         } else if (System.getProperty("os.name").contains("Mac")) {
-            System.out.println("==========================================================================Setting path for  drivers" + System.getProperty("os.name"));
             System.setProperty("webdriver.chrome.driver", path + "mac/chromedriver");
             System.setProperty("webdriver.gecko.driver", path + "mac/geckodriver");
         } else {
