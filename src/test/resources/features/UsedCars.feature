@@ -6,18 +6,21 @@ Feature: User avails the feature of browsing or buying used cars
     Given I launch Trade me home page
 
   @usedcars
+  @usedcars1
   Scenario: User should see at least one product under used cars
     And I select "Motors" category
     When I choose "UsedCars" under Motors
     Then I should see at least one listing available
 
   @usedcars
+  @usedcars2
   Scenario: Validate the existence of Kia category under used cars
     And I select "Motors" category
     When I choose "UsedCars" under Motors
     Then I should see that "Kia" category exists
 
   @usedcars
+  @usedcars3
   Scenario: Check the details shown for used cars
     And I select "Motors" category
     When I choose "UsedCars" under Motors
